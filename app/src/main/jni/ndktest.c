@@ -8,6 +8,8 @@ jstring Java_com_buzz_jniboxbox_MainActivity_helloWorld
 }
 
 
+//Convert Celsius to Fahrenheit
+//Used formula from this web (http://www.almanac.com/content/temperature-conversion)
 jdouble Java_com_buzz_jniboxbox_MainActivity_Converter
         (JNIEnv* env, jobject obj, jdouble x) {
     x = (x*1.8) + 32;
