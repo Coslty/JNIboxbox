@@ -13,6 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+/*
+Making app to display 5 days of the week, (Mon - Fri)
+Convert temperature from Celsius to Fahrenheit for each day
+Display TextView of ambient sensor on Top
+ */
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     TextView mondayfrh, tuesdayfrh, wednesdayfrh, thursdayfrh, fridayfrh;
@@ -26,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
     int cels_monday, cels_tuesday, cels_wedensday, cels_thursday, cels_friday;
-
     public boolean isTrue = false;
 
 
@@ -57,12 +62,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         random_temp = (Button) findViewById(R.id.button_random_gen);
 
+
+        //On the starting app, generate a random number for Mon - Fri in Celsius
         cels_monday = randomGen();
         cels_tuesday = randomGen();
         cels_wedensday = randomGen();
         cels_thursday = randomGen();
         cels_friday = randomGen();
 
+        //Set numbers in TextView for every days (Mon - Fri)
         mondaycels.setText(Integer.toString(cels_monday));
         tuesdaycels.setText(Integer.toString(cels_tuesday));
         wednesdaycels.setText(Integer.toString(cels_wedensday));
@@ -70,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         fridaycels.setText(Integer.toString(cels_friday));
 
 
+        //Button click to generate another random numbers than reset the TextView for each days
         random_temp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
 
 
+
+
+        //5 Switches
+        //Do convert from Celsius to Fahrenheit
+        //From Fahrenheit to Celsius
         switch_mon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -194,16 +208,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
 
+    //Random number set range 21 to 37 in Celsius (Since it is appropriate temperature
     int randomGen (){
         int range = 16;
         return (int)(Math.random() * range) + 21;
     }
 
+    //Use JNI function
+    //Called C method named "Converter"
     public native double Converter(double x);
     static {
         System.loadLibrary("ndktest");
     }
 
+    //If the phone support ambient sensor then display the temperature on Top of Activity
     @Override
     public void onSensorChanged(SensorEvent event) {
         float ambient_temperature = event.values[0];
