@@ -16,4 +16,11 @@ jdouble Java_com_buzz_jniboxbox_MainActivity_Converter
     return  x;
 }
 
+jdouble Java_com_buzz_jniboxbox_Conversion_Converter
+        (JNIEnv* env, jobject obj, jdouble x) {
+    x = (x*1.8) + 32;
+    return  x;
+}
+
+
 
