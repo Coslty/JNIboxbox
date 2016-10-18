@@ -2,8 +2,6 @@ package com.buzz.jniboxbox;
 
 
 import android.app.Activity;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,20 +21,10 @@ public class Conversion extends Activity{
     public boolean isTrue = false;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.conversion_temp);
-
-
-
-
-
-
-
 
         mondayfrh = (TextView) findViewById(R.id.mondayfrh);
         tuesdayfrh = (TextView) findViewById(R.id.tuesdayfrh);
@@ -100,8 +88,6 @@ public class Conversion extends Activity{
                 switch_fri.setChecked(false);
             }
         });
-
-
 
 
         //5 Switches
@@ -196,7 +182,6 @@ public class Conversion extends Activity{
         int range = 16;
         return (int)(Math.random() * range) + 21;
     }
-
 
     //Use JNI function
     //Called C method named "Converter"
